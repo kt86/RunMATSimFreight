@@ -11,7 +11,7 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>matsim-example-project</artifactId>
+	<artifactId>KMTs-Run-MATSim</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>MATSim example project</name>
@@ -178,7 +178,7 @@
 <!--				https://stackoverflow.com/questions/27429097/geotools-cannot-find-hsql-epsg-db-throws-error-nosuchauthoritycodeexception/27431381#27431381)-->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.4.1</version>
+				<version>3.5.0</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -186,7 +186,7 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
-							<outputFile>${project.basedir}/${project.build.finalName}.jar</outputFile>
+<!--					    	<finalName>${project.basedir}_${project.build.finalName}</finalName>-->
 							<transformers>
 								<!-- The following sets the main class for the executable jar as you otherwise would with the assembly plugin -->
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
@@ -201,6 +201,7 @@
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
 							</transformers>
 							<filters>
+                                <!-- This filter excludes the META-INF files that cause problems with wrong/missing signatures -->
 								<filter>
 									<artifact>*:*</artifact>
 									<excludes>
@@ -209,6 +210,13 @@
 										<exclude>META-INF/*.RSA</exclude>
 									</excludes>
 								</filter>
+                                <!-- Neu: alte ImageIO-Bibliotheken ausschließen -->
+                                <filter>
+                                    <artifact>com.sun.media:jai-imageio</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/services/**</exclude>
+                                    </excludes>
+                                </filter>
 							</filters>
 						</configuration>
 					</execution>

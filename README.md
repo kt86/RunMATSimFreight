@@ -4,6 +4,10 @@ This repo is a copy from the matsim-example-project, which is a small example of
 I only uses this here to run a class in the freight contrib from a jar file.
 Since packaging matsim-libs as a jar file for the cluster has some issues, I use this project to run the class.
 
+Geht nun mit 
+mvn package -DskipTests
+Achtung vorher matsim-libs bauen damit er da das aktuelle findet solange ich auf snapshot bin.
+
 
 # matsim-example-project
 
