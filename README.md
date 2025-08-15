@@ -1,3 +1,10 @@
+# Run freight in matsim-libs
+This repo is a copy from the matsim-example-project, which is a small example of how to use MATSim as a library.
+
+I only uses this here to run a class in the freight contrib from a jar file.
+Since packaging matsim-libs as a jar file for the cluster has some issues, I use this project to run the class.
+
+
 # matsim-example-project
 
 A small example of how to use MATSim as a library.
