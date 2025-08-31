@@ -36,6 +36,7 @@ import org.matsim.freight.carriers.CarriersUtils;
 import org.matsim.freight.carriers.FreightCarriersConfigGroup;
 import org.matsim.freight.carriers.controller.CarrierModule;
 import org.matsim.freight.carriers.controller.CarrierScoringFunctionFactory;
+import org.matsim.freight.carriers.usecases.CarrierScorerEventBasedInclToll;
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -137,14 +138,13 @@ public class RunFoodWCmd {
         // ## MATSim configuration:  ##
         final Controler controler = new Controler( scenario ) ;
         controler.addOverridingModule(new CarrierModule() );
-        controler.addOverridingModule(
-                new AbstractModule() {
-                    @Override
-                    public void install() {
-                        bind(CarrierScoringFunctionFactory.class).toInstance(new EventBasedCarrierScorer4MultipleChainsInclToll());
-                    }
-                }
-        );
+    controler.addOverridingModule(
+        new AbstractModule() {
+          @Override
+          public void install() {
+            bind(CarrierScoringFunctionFactory.class).toInstance(new CarrierScorerEventBasedInclToll());
+          }
+        });
 
         // ## Start of the MATSim-Run: ##
         controler.run();
