@@ -16,7 +16,8 @@
  *                                                                         *
  * *********************************************************************** */
 
-package org.matsim.freight.carriers;
+// Need this package, because the scoring function is there and currently package-private -.-
+package org.matsim.freight.logistics.examples.multipleChains;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,10 +26,16 @@ import org.matsim.api.core.v01.Scenario;
 import org.matsim.core.config.CommandLine;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
+import org.matsim.core.controler.AbstractModule;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy;
 import org.matsim.core.scenario.ScenarioUtils;
+import org.matsim.freight.carriers.Carrier;
+import org.matsim.freight.carriers.Carriers;
+import org.matsim.freight.carriers.CarriersUtils;
+import org.matsim.freight.carriers.FreightCarriersConfigGroup;
 import org.matsim.freight.carriers.controller.CarrierModule;
+import org.matsim.freight.carriers.controller.CarrierScoringFunctionFactory;
 
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -130,6 +137,14 @@ public class RunFoodWCmd {
         // ## MATSim configuration:  ##
         final Controler controler = new Controler( scenario ) ;
         controler.addOverridingModule(new CarrierModule() );
+        controler.addOverridingModule(
+                new AbstractModule() {
+                    @Override
+                    public void install() {
+                        bind(CarrierScoringFunctionFactory.class).toInstance(new EventBasedCarrierScorer4MultipleChainsInclToll());
+                    }
+                }
+        );
 
         // ## Start of the MATSim-Run: ##
         controler.run();
