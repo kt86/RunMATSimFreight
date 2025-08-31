@@ -23,13 +23,11 @@ import org.apache.logging.log4j.Logger;
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.core.config.CommandLine;
-import org.matsim.contrib.otfvis.OTFVisLiveModule;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy;
 import org.matsim.core.scenario.ScenarioUtils;
-import org.matsim.freight.carriers.analysis.CarriersAnalysis;
 import org.matsim.freight.carriers.controller.CarrierModule;
 
 import java.util.*;
@@ -59,9 +57,7 @@ public class RunFoodWCmd {
       run(args);
   }
 
-    public static void run(String[] args) throws ExecutionException, InterruptedException, CommandLine.ConfigurationException {;
-
-
+    public static void run(String[] args) throws ExecutionException, InterruptedException, CommandLine.ConfigurationException {
         CommandLine cmd = new CommandLine.Builder(args) //
                 .allowAnyOption(true)
                 .allowPositionalArguments(false)
@@ -91,7 +87,7 @@ public class RunFoodWCmd {
 
         final String networkChangeEventsFileLocation = cmd.getOption("networkChangeEventsFile").orElse(null);
         if (networkChangeEventsFileLocation != null && !networkChangeEventsFileLocation.isEmpty()){
-            log.info("Setting networkChangeEventsInput file: " + networkChangeEventsFileLocation);
+            log.info("Setting networkChangeEventsInput file: {}", networkChangeEventsFileLocation);
             config.network().setTimeVariantNetwork(true);
             config.network().setChangeEventsInputFile(networkChangeEventsFileLocation);
         } else {
