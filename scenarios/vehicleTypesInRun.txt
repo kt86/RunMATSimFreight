@@ -1,0 +1,22 @@
+EDEKA
+Base(ICEV): 	medium18t,heavy26t
+BEV:			medium18t_electro,heavy26t_electro
+
+Kaufland
+Base(ICEV): medium18t,heavy40t
+BEV:	medium18t_electro,heavy40t_electro
+
+
+
+Einzeln
+light8t
+light8t_electro
+
+medium18t
+medium18t_electro
+
+heavy26t
+heavy26t_electro
+
+heavy40t
+heavy40t_electro
