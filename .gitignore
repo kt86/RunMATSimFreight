@@ -21,6 +21,8 @@ hs_err_pid*
 /test/output/
 /bin/
 
+/outputKMT/
+
 # IntelliJ
 /.idea/
 *.iml
