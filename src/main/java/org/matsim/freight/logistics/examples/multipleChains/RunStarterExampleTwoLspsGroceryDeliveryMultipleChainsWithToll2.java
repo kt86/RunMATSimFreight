@@ -14,12 +14,13 @@ public class RunStarterExampleTwoLspsGroceryDeliveryMultipleChainsWithToll2 {
         
         try {
             String[] argsToSet = {
-                    "--outputDirectory=outputKMT/testRun",
-                    "--matsimIterations=20",
-                    "--config:replanning.fractionOfIterationsToDisableInnovation=0.5",
-                    "--jspritIterationsDirect=10",
+                    "--outputDirectory=outputKMT/testRunClean",
+                    "--matsimIterations=10",
+                    "--config:replanning.fractionOfIterationsToDisableInnovation=0.9",
+                    "--config:controler.cleanItersAtEnd=delete",
+                    "--jspritIterationsDirect=1",
                     "--jspritIterationsMain=1",
-                    "--jspritIterationsDistribution=10",
+                    "--jspritIterationsDistribution=1",
                     "--tollValue=1000",
                     "--tolledVehicleTypes=non",
                     "--HubCostsFix=100",
